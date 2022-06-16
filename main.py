@@ -43,6 +43,10 @@ while run_game:
                 y1_change = snake_block
                 x1_change = 0
 
+
+    if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
+        run_game = False
+
     x1 += x1_change
     y1 += y1_change
 
