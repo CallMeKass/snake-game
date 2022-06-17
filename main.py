@@ -1,5 +1,3 @@
-from distutils.log import debug
-from re import L
 import pygame
 import time
 import random
