@@ -39,7 +39,7 @@ def message(msg,color,x,y,style):
 
 def place_food():
     x = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
-    y = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+    y = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
     return x,y
 
 def game_loop(debug_enabled=False) -> None:
