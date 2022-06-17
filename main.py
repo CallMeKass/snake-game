@@ -87,6 +87,10 @@ def game_loop(debug_enabled=False) -> None:
         snake_List.append(snake_Head)
         if len(snake_List) > Length_of_snake:
             del snake_List[0]
+
+        for x in snake_List[:-1]:
+            if x == snake_Head:
+                run_game = False
  
         our_snake(snake_block, snake_List)
         message("Score: "+str(Length_of_snake-1),black,0,0,score_font)
