@@ -74,6 +74,8 @@ def game_loop(debug_enabled=False) -> None:
         pygame.draw.rect(dis, black, [snake_x, snake_y, snake_block, snake_block])
     
         pygame.display.update()
+        if snake_x==foodx and snake_y==foody:
+            foodx,foody=place_food()
 
         clock.tick(snake_speed)
 
