@@ -18,11 +18,15 @@ yellow = (255, 255, 102)
 
  
 snake_block=10
-snake_speed=30
+snake_speed=10
 
 clock = pygame.time.Clock()
 
 font_style = pygame.font.SysFont(None, 50)
+
+def our_snake(snake_block, snake_list):
+    for x in snake_list:
+        pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
 
 def message(msg,color):
     mesg = font_style.render(msg, True, color)
@@ -39,6 +43,9 @@ def game_loop(debug_enabled=False) -> None:
 
     snake_xdelta = 0       
     snake_ydelta = 0
+
+    snake_List = []
+    Length_of_snake = 1
 
     foodx,foody=place_food()
 
@@ -71,11 +78,20 @@ def game_loop(debug_enabled=False) -> None:
 
         dis.fill(white)
         pygame.draw.rect(dis,blue,[foodx,foody,snake_block,snake_block]) 
-        pygame.draw.rect(dis, black, [snake_x, snake_y, snake_block, snake_block])
+
+        snake_Head = []
+        snake_Head.append(snake_x)
+        snake_Head.append(snake_y)
+        snake_List.append(snake_Head)
+        if len(snake_List) > Length_of_snake:
+            del snake_List[0]
+ 
+        our_snake(snake_block, snake_List)
     
         pygame.display.update()
         if snake_x==foodx and snake_y==foody:
             foodx,foody=place_food()
+            Length_of_snake += 1
 
         clock.tick(snake_speed)
 
