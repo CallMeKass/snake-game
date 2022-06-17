@@ -26,7 +26,7 @@ snake_speed=10
 
 clock = pygame.time.Clock()
 
-font_style = pygame.font.SysFont("bahnschrift", 50)
+font_style = pygame.font.SysFont("bahnschrift", 35)
 score_font = pygame.font.SysFont("bahnschrift", 25)
 
 def our_snake(snake_block, snake_list):
@@ -55,7 +55,23 @@ def game_loop(debug_enabled=False) -> None:
     foodx,foody=place_food()
 
     run_game=True
-    while run_game:
+    end_game=False
+    while not end_game:
+
+        while run_game == False and end_game !=True:
+            message("You lost! Press SPACE to play again or Press q to quit",red,(dis_width/2)-310, (dis_height/2)-100,font_style)
+            message("Score: "+str(Length_of_snake-1),black,0,0,score_font)
+            pygame.display.update()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                     end_game = True
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_q:
+                        end_game = True
+                    if event.key == pygame.K_SPACE:
+                        game_loop()
+
         for event in pygame.event.get():
             if debug_enabled: print(event)
             if event.type==pygame.QUIT:
@@ -104,10 +120,6 @@ def game_loop(debug_enabled=False) -> None:
             Length_of_snake += 1
 
         clock.tick(snake_speed)
-
-    message("You lost",red,(dis_width/2)-70, (dis_height/2)-100,font_style)
-    pygame.display.update()
-    time.sleep(2)
 
     pygame.quit()
     quit()
