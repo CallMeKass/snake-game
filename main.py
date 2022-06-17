@@ -1,4 +1,5 @@
 from distutils.log import debug
+from re import L
 import pygame
 import time
 import random
@@ -22,15 +23,16 @@ snake_speed=10
 
 clock = pygame.time.Clock()
 
-font_style = pygame.font.SysFont(None, 50)
+font_style = pygame.font.SysFont("bahnschrift", 50)
+score_font = pygame.font.SysFont("bahnschrift", 25)
 
 def our_snake(snake_block, snake_list):
     for x in snake_list:
         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
 
-def message(msg,color):
-    mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [(dis_width/2)-70, (dis_height/2)-100])
+def message(msg,color,x,y,style):
+    mesg = style.render(msg, True, color)
+    dis.blit(mesg, [x,y])
 
 def place_food():
     x = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
@@ -87,6 +89,7 @@ def game_loop(debug_enabled=False) -> None:
             del snake_List[0]
  
         our_snake(snake_block, snake_List)
+        message("Score: "+str(Length_of_snake-1),black,0,0,score_font)
     
         pygame.display.update()
         if snake_x==foodx and snake_y==foody:
@@ -95,7 +98,7 @@ def game_loop(debug_enabled=False) -> None:
 
         clock.tick(snake_speed)
 
-    message("You lost",red)
+    message("You lost",red,(dis_width/2)-70, (dis_height/2)-100,font_style)
     pygame.display.update()
     time.sleep(2)
 
