@@ -13,6 +13,9 @@ blue=(0,0,255)
 red=(255,0,0)
 white = (255, 255, 255)
 black=(0,0,0)
+green = (0, 255, 0)
+yellow = (255, 255, 102)
+
  
 snake_block=10
 snake_speed=30
