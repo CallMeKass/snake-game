@@ -8,6 +8,11 @@ dis_height=600
 dis=pygame.display.set_mode((dis_width,dis_height))
 pygame.display.set_caption('Snake game by CallMeKass')
 
+dis_borders: 40
+
+def draw_borders(s, x, y, w, h, bw, c):
+    pygame.draw.lines(s, c, True, [(x, y), (x+w, y), (x+w, y+h), (x, y+h)], bw)
+
 blue=(0,0,255)
 red=(255,0,0)
 white = (255, 255, 255)
