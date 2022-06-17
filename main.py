@@ -25,11 +25,11 @@ def message(msg,color):
     dis.blit(mesg, [(dis_width/2)-70, (dis_height/2)-100])
 
 def game_loop(debug_enabled=False) -> None:
-    x1 = int(dis_width/2)
-    y1 = int(dis_height/2)
+    snake_x = int(dis_width/2)
+    snake_y = int(dis_height/2)
 
-    x1_change = 0       
-    y1_change = 0
+    snake_xdelta = 0       
+    snake_ydelta = 0
 
     run_game=True
     while run_game:
@@ -39,27 +39,27 @@ def game_loop(debug_enabled=False) -> None:
                 run_game=False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    x1_change = -snake_block
-                    y1_change = 0
+                    snake_xdelta = -snake_block
+                    snake_ydelta = 0
                 elif event.key == pygame.K_RIGHT:
-                    x1_change = snake_block
-                    y1_change = 0
+                    snake_xdelta = snake_block
+                    snake_ydelta = 0
                 elif event.key == pygame.K_UP:
-                    y1_change = -snake_block
-                    x1_change = 0
+                    snake_ydelta = -snake_block
+                    snake_xdelta = 0
                 elif event.key == pygame.K_DOWN:
-                    y1_change = snake_block
-                    x1_change = 0
+                    snake_ydelta = snake_block
+                    snake_xdelta = 0
 
 
-        if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
+        if snake_x >= dis_width or snake_x < 0 or snake_y >= dis_height or snake_y < 0:
             run_game = False
 
-        x1 += x1_change
-        y1 += y1_change
+        snake_x += snake_xdelta
+        snake_y += snake_ydelta
 
         dis.fill(white)
-        pygame.draw.rect(dis,black,[x1,y1,snake_block,snake_block])     
+        pygame.draw.rect(dis,black,[snake_x,snake_y,snake_block,snake_block])     
 
         pygame.display.update()
 
