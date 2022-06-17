@@ -1,4 +1,5 @@
 import pygame
+import time
 pygame.init()
 
 
@@ -23,6 +24,12 @@ snake_block=10
 
 clock = pygame.time.Clock()
 snake_speed=30
+
+font_style = pygame.font.SysFont(None, 50)
+
+def message(msg,color):
+    mesg = font_style.render(msg, True, color)
+    dis.blit(mesg, [(dis_width/2)-70, (dis_height/2)-100])
 
 while run_game:
     for event in pygame.event.get():
@@ -56,6 +63,10 @@ while run_game:
     pygame.display.update()
 
     clock.tick(snake_speed)
+
+message("You lost",red)
+pygame.display.update()
+time.sleep(2)
 
 pygame.quit()
 quit()
