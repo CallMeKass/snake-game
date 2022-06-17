@@ -11,6 +11,7 @@ pygame.display.set_caption('Snake game by CallMeKass')
 blue=(0,0,255)
 red=(255,0,0)
 white = (255, 255, 255)
+black=(0,0,0)
 
 run_game=True
 debugger=True
@@ -58,7 +59,7 @@ while run_game:
     y1 += y1_change
 
     dis.fill(white)
-    pygame.draw.rect(dis,blue,[x1,y1,snake_block,snake_block])     
+    pygame.draw.rect(dis,black,[x1,y1,snake_block,snake_block])     
 
     pygame.display.update()
 
