@@ -1,6 +1,7 @@
 from distutils.log import debug
 import pygame
 import time
+import random
 pygame.init()
 
 dis_width=800
@@ -24,12 +25,19 @@ def message(msg,color):
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [(dis_width/2)-70, (dis_height/2)-100])
 
+def place_food():
+    x = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+    y = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+    return x,y
+
 def game_loop(debug_enabled=False) -> None:
     snake_x = int(dis_width/2)
     snake_y = int(dis_height/2)
 
     snake_xdelta = 0       
     snake_ydelta = 0
+
+    foodx,foody=place_food()
 
     run_game=True
     while run_game:
@@ -59,8 +67,9 @@ def game_loop(debug_enabled=False) -> None:
         snake_y += snake_ydelta
 
         dis.fill(white)
-        pygame.draw.rect(dis,black,[snake_x,snake_y,snake_block,snake_block])     
-
+        pygame.draw.rect(dis,blue,[foodx,foody,snake_block,snake_block]) 
+        pygame.draw.rect(dis, black, [snake_x, snake_y, snake_block, snake_block])
+    
         pygame.display.update()
 
         clock.tick(snake_speed)
